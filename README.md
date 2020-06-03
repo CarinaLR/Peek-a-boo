@@ -1,3 +1,5 @@
-# Project 1
+# Peek-a-boo!
 
-Web Programming with Python and JavaScript
+A book review website.
+
+Project 1 - Web Programming with Python and JavaScript
