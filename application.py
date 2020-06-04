@@ -1,5 +1,5 @@
 import os
-# import requests
+
 
 from flask import Flask, session
 from flask_session import Session
@@ -21,21 +21,6 @@ Session(app)
 engine = create_engine(os.getenv(
     "DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
-
-# Getting Goodreads APIs
-
-
-# def main():
-#     res = requests.get("https://www.goodreads.com/book/review_counts.json",
-#                        params={"key": "FIbCP1B0yajXYRYbsLujng", "isbns": "9781632168146"})
-
-
-# data = res.json()
-# print(data)
-
-# if __name__ == "__main__":
-#     main()
-
 
 @app.route("/")
 def index():
