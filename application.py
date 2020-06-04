@@ -2,7 +2,7 @@ import os
 import requests
 
 
-from flask import Flask, session
+from flask import Flask, session, render_template
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -26,13 +26,16 @@ db = scoped_session(sessionmaker(bind=engine))
 
 @app.route("/")
 def index():
-    return "Project 1: TODO"
+    headline = "Hello, welcome to Peek a boo!"
+    return render_template("index.html", headline=headline)
+
+# Route for Goodreads APIs reviews
 
 
 @app.route("/reviews")
 def main():
     res = requests.get("https://www.goodreads.com/book/review_counts.json",
-                       params={"key": "FIbCP1B0yajXYRYbsLujng", "isbns": "9781632168146"})
+                       params={"key": "FIbCP1B0yajXYRYbsLujng", "isbns": "0590396560"})
     if res.status_code != 200:
         raise Exception("ERROR: API request unsuccessful.")
     data = res.json()
