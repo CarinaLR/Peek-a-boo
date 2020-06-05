@@ -42,6 +42,30 @@ def main():
     return data
 
 
+@app.route("/sign-up")
+def sign():
+    headline = "Please enter your information below."
+    return render_template("register.html", headline=headline)
+
+
+@app.route("/login")
+def login():
+    headline = "Welcome, you are already login."
+    return render_template("login.html", headline=headline)
+
+
+@app.route("/logout")
+def logout():
+    headline = "Thank you for visiting us, come back soon!"
+    return render_template("logout.html", headline=headline)
+
+
+@app.route("/request")
+def request():
+    headline = "Enter the information requested to help you with your search."
+    return render_template("request.html", headline=headline)
+
+
 # API Key
 # key: FIbCP1B0yajXYRYbsLujng
 # secret: zG93CWU1lNCz59RrU6NN57zA00eZcghAceTQfEIUzA
