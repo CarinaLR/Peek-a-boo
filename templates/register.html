@@ -7,14 +7,20 @@ navbar %}
 </nav>
 {% endblock %} {% block body %}
 <div id="single-book-detail" class="row">
+  <h1>Registration</h1>
   <div class="column mr1">
-    <h2>Full Name:</h2>
-    <h2>Email:</h2>
-    <h2>Password:</h2>
+    <form action="{{ url_for('login')}}" method="POST">
+      <input
+        type="email"
+        name="email"
+        placeholder="Enter Email"
+        value="{{email if emial}}"
+      />
+    </form>
   </div>
 </div>
 <div id="single-book-nav">
-  <h2>Conten0</h2>
+  <h2>Content0</h2>
 </div>
 <hr />
 {% endblock %}
