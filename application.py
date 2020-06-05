@@ -2,7 +2,7 @@ import os
 import requests
 
 
-from flask import Flask, session, render_template
+from flask import Flask, session, render_template, request, flash
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -23,6 +23,8 @@ engine = create_engine(os.getenv(
     "DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
+# Home page route
+
 
 @app.route("/")
 def index():
@@ -41,22 +43,37 @@ def main():
     data = res.json()
     return data
 
+# Application routes
 
-@app.route("/sign-up")
+
+@app.route("/sign-up", methods=["POST", "GET"])
 def sign():
     headline = "Please enter your information below."
-    return render_template("register.html", headline=headline)
+    email = None
+    if "sign" in session:
+        sign = session["sign"]
+
+        if request.method == "POST":
+            email = request.form["email"]
+            session["email"] = email
+            flash("Email was saved!")
+    else:
+        if "email" in session:
+            email = session["email"]
+    return render_template("register.html", headline=headline, email=email)
 
 
 @app.route("/login")
 def login():
-    headline = "Welcome, you are already login."
+    headline = "Welcome, you are not logged in!"
     return render_template("login.html", headline=headline)
 
 
 @app.route("/logout")
 def logout():
     headline = "Thank you for visiting us, come back soon!"
+    session.pop("sign", None)
+    session.pop("email", None)
     return render_template("logout.html", headline=headline)
 
 
