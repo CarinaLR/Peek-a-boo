@@ -1,0 +1,35 @@
+<DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      />
+      <title>{% block title %}{% endblock %}</title>
+      <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans"
+        rel="stylesheet"
+      />
+      <link rel="stylesheet" href="../static/css/style.css" />
+    </head>
+    <body id="main">
+      <div class="column container">
+        <div id="navbar" class="row">
+          {% block navbar %}{% endblock %}
+        </div>
+        <div>
+          <div id="header">
+            <h1>{{ headline }}</h1>
+          </div>
+          <p id="single-story" class="column">
+            Peek a boo will help you to check reviews for your favorite books!
+          </p>
+          <div id="single-author" class="column">
+            {% block body %}{% endblock %}
+          </div>
+        </div>
+      </div>
+    </body>
+  </html></DOCTYPE
+>

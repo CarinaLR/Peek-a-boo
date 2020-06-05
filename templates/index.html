@@ -1,52 +1,19 @@
-<DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="utf-8" />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no"
-      />
-      <title>Peek A Boo!</title>
-      <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans"
-        rel="stylesheet"
-      />
-      <link rel="stylesheet" href="../static/css/style.css" />
-    </head>
-    <body id="main">
-      <div class="column container">
-        <div id="navbar" class="row">
-          <nav>
-            <a href="{{ url_for('sign') }}">Sing up</a>
-            <a href="{{ url_for('login') }}">Login</a>
-            <a href="{{ url_for('logout') }}">Logout</a>
-          </nav>
-        </div>
-        <div>
-          <div id="header">
-            <h1>{{ headline }}</h1>
-          </div>
-          <p id="single-story" class="column">
-            Peek a boo will help you to check reviews for your favorite books!
-          </p>
-          <!-- <div id="image-content">
-            <img
-              src="https://images.unsplash.com/photo-1569360457068-0e24f0d88117?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=976&q=80"
-            />
-          </div> -->
-          <div id="single-author" class="column">
-            <div id="single-book-detail" class="row">
-              <div class="column mr1">
-                <h1>Book Name</h1>
-                <p>Author Name</p>
-              </div>
-            </div>
-            <div id="single-book-nav">
-              <h2>Conten1</h2>
-            </div>
-            <hr />
-          </div>
-        </div>
-      </div>
-    </body></html
-></DOCTYPE>
+{% extends "layout.html" %} {% block title %} Peek A Boo! {% endblock %} {%
+block navbar %}
+<nav>
+  <a href="{{ url_for('sign') }}">Sing up</a>
+  <a href="{{ url_for('login') }}">Login</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+{% endblock %} {% block body %}
+<div id="single-book-detail" class="row">
+  <div class="column mr1">
+    <h1>Book Name</h1>
+    <p>Author Name</p>
+  </div>
+</div>
+<div id="single-book-nav">
+  <h2>Conten1</h2>
+</div>
+<hr />
+{% endblock %}
