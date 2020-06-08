@@ -9,7 +9,10 @@ block navbar %}
 <div id="single-book-detail" class="row">
   <div class="column mr1">
     <h1>Book Name</h1>
-    <p>Author Name</p>
+    <form action="{{url_for('signup')}}">
+      <input type="text" placeholder="Search" name="text" />
+      <button type="submit">Search</button>
+    </form>
   </div>
 </div>
 <div id="single-book-nav">
