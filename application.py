@@ -66,12 +66,12 @@ def signup():
     # Clear session.
     session.clear()
 
-    # Submitting a form via POST
+    # Submit form.
     if request.method == "POST":
 
         # Check if info has an username
         if not request.form.get("username"):
-            return render_template("register.html", message="must be register")
+            return render_template("register.html", message="must be registered")
 
         # Access database for username
         userCheck = db.execute("SELECT * FROM users WHERE name = :username",
@@ -83,7 +83,7 @@ def signup():
 
         # Check if info has a password
         elif not request.form.get("password"):
-            return render_template("login.html", message="must be login")
+            return render_template("login.html", message="please enter password")
 
         # Check if info has an email
         elif not request.form.get("email"):
@@ -95,26 +95,26 @@ def signup():
 
             return render_template("login.html", message="must be login")
 
-        # Check passwords are equal
+        # Check password.
         elif not request.form.get("password") == request.form.get("password"):
-            return render_template("register.html", message="passwords didn't match")
+            return render_template("register.html", message="invalid password")
 
-        # Insert info into database
+        # Insert info into database.
         db.execute("INSERT INTO users (id, name, email, password) VALUES (:id,:username, :email, :password)",
                    {"id": id+1,
                     "username": request.form.get("username"),
                     "email": request.form.get("email"),
                     "password": request.form.get("password")})
 
-        # Commit changes to database
+        # Commit changes to database.
         db.commit()
 
-        flash('Account created', 'info')
+        flash('Submitted info saved')
 
-        # Redirect user to login page
+        # Redirect user to login page.
         return redirect("/login")
 
-    # User reached route by Search botton.
+    # Renders registration page by clicking on Search button.
     else:
         return render_template("register.html", headline=headline)
 
@@ -123,11 +123,10 @@ def signup():
 def login():
     # Set variables.
     headline = "Welcome, you are not logged in!"
-
-    # Clear user_id
-    session.clear()
-
     username = request.form.get("username")
+
+    # Clear session.
+    session.clear()
 
     # Submit a form.
     if request.method == "POST":
@@ -146,9 +145,9 @@ def login():
 
         result = user.fetchone()
 
-        # Ensure username exists and password is correct.
+        # Check if user already exits.
         if result == None:
-            return render_template("register.html", message="invalid username and/or password")
+            return render_template("register.html", message="invalid user, please check your information.")
 
         # Remember user.
         session["user_id"] = result[0]
@@ -157,7 +156,7 @@ def login():
         # Redirect user to book-info page.
         return redirect("/book-info")
 
-    # User reached route by navbar link
+    # Renders login page.
     else:
         return render_template("login.html", headline=headline)
 
@@ -165,7 +164,9 @@ def login():
 @app.route("/logout")
 def logout():
     headline = "Thank you for visiting us, come back soon!"
+    # Clear seesion.
     session.clear()
+    # Renders logout page, redirecting user to login page by login button.
     return render_template("logout.html", headline=headline)
 
 
