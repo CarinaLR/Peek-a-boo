@@ -6,8 +6,7 @@ from flask import Flask, session, render_template, request, flash
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-# Import table definitions.
-# from models import *
+
 
 app = Flask(__name__)
 
@@ -16,8 +15,8 @@ if not os.getenv("DATABASE_URL"):
     raise RuntimeError("DATABASE_URL is not set")
 
 # Tell Flask what SQLAlchemy database to use.
-# app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
-# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Configure session to use filesystem
 app.config["SESSION_PERMANENT"] = False
@@ -29,13 +28,6 @@ engine = create_engine(os.getenv(
     "DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
-# Link the Flask app with the database.
-# db.init_app(app)
-
-
-# def main():
-#     # Create tables based on each table definition in `models`
-#     db.create_all()
 
 # Home page route
 
