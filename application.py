@@ -55,11 +55,11 @@ def goodreads():
 
 
 @app.route("/sign-up", methods=["POST", "GET"])
-def sign():
+def signup():
     headline = "Please enter your information below."
     email = None
-    if "sign" in session:
-        sign = session["sign"]
+    if "signup" in session:
+        signup = session["signup"]
 
         if request.method == "POST":
             email = request.form["email"]
