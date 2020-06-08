@@ -61,6 +61,7 @@ def signup():
     username = request.form.get('username')
     email = request.form.get('email')
     password = request.form.get('password')
+    id = 1
 
     # Clear session.
     session.clear()
@@ -100,7 +101,7 @@ def signup():
 
         # Insert info into database
         db.execute("INSERT INTO users (id, name, email, password) VALUES (:id,:username, :email, :password)",
-                   {"id": 1,
+                   {"id": id+1,
                     "username": request.form.get("username"),
                     "email": request.form.get("email"),
                     "password": request.form.get("password")})

@@ -8,7 +8,7 @@ db = SQLAlchemy()
 
 class User(db.Model):
     __tablename__ = "users"
-    _id = db.Column("id", db.Integer, primary_key=True)
+    _id = db.Column("id", db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.Varchar, nullable=False)
     email = db.Column(db.Varchar, nullable=False)
     password = db.Column(db.Varchar, nullable=False)
@@ -24,7 +24,7 @@ class Book(db.Model):
 
 class Review(db.Model):
     __tablename__ = "reviews"
-    _id = db.Column("id", db.Integer, primary_key=True)
+    _id = db.Column("id", db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column("user_id", db.Integer,
                         db.ForeignKey("user.id"))
     book_isbn = db.Column("book_isbn", db.Integer,
