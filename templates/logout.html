@@ -9,7 +9,11 @@ navbar %}
 <div id="single-book-detail" class="row">
   <div class="column mr1">
     <h1>Please login in first</h1>
-    <button type="submit">Back to Login</button>
+    <form action="{{url_for('login')}}">
+      <h2>Would you like to login?</h2>
+      <input type="text" placeholder="Y / N" name="text" />
+      <button type="button">Go Back to Login</button>
+    </form>
   </div>
 </div>
 <div id="single-book-nav">

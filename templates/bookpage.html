@@ -1,4 +1,4 @@
-{% extends "layout.html" %} {% block title %} Search {% endblock %} {% block
+{% extends "layout.html" %} {% block title %} My Book {% endblock %} {% block
 navbar %}
 <nav>
   <a href="{{ url_for('index') }}">Home</a>
@@ -8,7 +8,17 @@ navbar %}
 <div id="single-book-detail" class="row">
   <div class="column mr1">
     <h1>My Book</h1>
-    <form action="{{ url_for('bookpage')}}">
+    <form>
+      <label for="bookreview">Review of user:</label>
+
+      <textarea id="bookreview" name="bookreview" rows="4" cols="50">
+Please let us know what do you think about this book.
+</textarea
+      >
+      <br /><br />
+      <input type="submit" value="Submit" />
+      <br /><br />
+      <label>Search more books</label>
       <input type="text" placeholder="Search" name="text" />
       <button type="submit">Search</button>
     </form>

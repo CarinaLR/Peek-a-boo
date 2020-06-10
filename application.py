@@ -61,7 +61,6 @@ def signup():
     username = request.form.get('username')
     email = request.form.get('email')
     password = request.form.get('password')
-    id = 1
 
     # Clear session.
     session.clear()
@@ -100,11 +99,11 @@ def signup():
             return render_template("register.html", message="invalid password")
 
         # Insert info into database.
-        db.execute("INSERT INTO users (id, name, email, password) VALUES (:id,:username, :email, :password)",
-                   {"id": id+1,
-                    "username": request.form.get("username"),
-                    "email": request.form.get("email"),
-                    "password": request.form.get("password")})
+        db.execute("INSERT INTO users (name, email, password) VALUES (:username, :email, :password)",
+                   {
+                       "username": request.form.get("username"),
+                       "email": request.form.get("email"),
+                       "password": request.form.get("password")})
 
         # Commit changes to database.
         db.commit()
@@ -174,3 +173,9 @@ def logout():
 def bookinfo():
     headline = "Enter the information requested to help you with your search."
     return render_template("bookinfo.html", headline=headline)
+
+
+@app.route("/book-page")
+def bookpage():
+    headline = "Here is the information requested."
+    return render_template("bookpage.html", headline=headline)
