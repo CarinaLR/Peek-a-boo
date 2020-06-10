@@ -174,12 +174,13 @@ def bookinfo():
     # Set variables.
     headline = "Enter the information requested to help you with your search."
 
-    # Get informatio.
-    title = request.form.get("book")
+    # Get informatio. request.args is used to return values of query string.
+    title = request.args.get("book")
     try:
         book_title = db.execute(
-            "SELECT title FROM books WHERE title LIKE :title", {"title": title})
-        books = book_title.fetchone()
+            "SELECT * FROM books WHERE title iLIKE :title", {"title": title})
+        books = book_title.fetchall()
+        return render_template("info.html", books=books)
     except ValueError:
         return render_template("error.html", message="we can't find books with that description.")
 
@@ -189,12 +190,6 @@ def bookinfo():
         return render_template("error.html", message="invalid title of the book.")
     else:
         return render_template("info.html", books=books)
-
-
-# @app.route("/info")
-# def info():
-#     headline = "Book Description."
-#     return render_template("info.html", headline=headline)
 
 
 @app.route("/book-page")
