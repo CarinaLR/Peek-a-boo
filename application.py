@@ -178,7 +178,7 @@ def bookinfo():
     title = request.args.get("book")
     try:
         book_title = db.execute(
-            "SELECT * FROM books WHERE title iLIKE :title", {"title": title})
+            "SELECT * FROM books WHERE isbn LIKE :title OR title LIKE :title OR author LIKE :title LIMIT 5", {"title": title})
         books = book_title.fetchall()
         return render_template("info.html", books=books)
     except ValueError:
