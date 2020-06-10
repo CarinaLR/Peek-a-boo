@@ -8,14 +8,18 @@ navbar %}
 <div id="single-book-detail" class="row">
   <div class="column mr1">
     <h1>My Book</h1>
-    <form action="{{ url_for('bookpage')}}">
-      <input type="text" placeholder="Search" name="text" />
+    <form action="/book-info" method="GET">
+      <input
+        type="text"
+        placeholder="Search by title, author or ISBN#"
+        name="book"
+      />
       <button type="submit">Search</button>
     </form>
   </div>
 </div>
 <div id="single-book-nav">
-  <h2>Conten1</h2>
+  <h2>Content4</h2>
 </div>
 <hr />
 {% endblock %}

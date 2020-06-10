@@ -1,0 +1,18 @@
+{% extends "layout.html" %} {% block title %} Peek A Boo! {% endblock %} {%
+block navbar %}
+<nav>
+  <a href="{{ url_for('index') }}">Sing up</a>
+  <a href="{{ url_for('login') }}">Login</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+{% endblock %} {% block body %}
+<div id="single-book-detail" class="row">
+  <div class="column mr1">
+    <h1>PEEK A BOO!</h1>
+  </div>
+</div>
+<div id="single-book-nav">
+  <h2>Sorry, {{ message }}</h2>
+</div>
+<hr />
+{% endblock %}

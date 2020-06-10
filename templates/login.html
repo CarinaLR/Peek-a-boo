@@ -34,8 +34,8 @@ navbar %}
     </form>
     <div>
       <h1>Book Name</h1>
-      <form action="{{url_for('bookinfo')}}">
-        <input type="text" placeholder="Search" name="text" />
+      <form action="/book-info" method="GET">
+        <input type="text" placeholder="Search" name="book" />
         <button type="submit">Search</button>
       </form>
     </div>

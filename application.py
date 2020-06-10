@@ -1,4 +1,6 @@
 import os
+import json
+import re
 import requests
 
 
@@ -167,10 +169,32 @@ def logout():
     return render_template("logout.html", headline=headline)
 
 
-@app.route("/book-info")
+@app.route("/book-info", methods=["GET"])
 def bookinfo():
+    # Set variables.
     headline = "Enter the information requested to help you with your search."
-    return render_template("bookinfo.html", headline=headline)
+
+    # Get informatio.
+    title = request.form.get("book")
+    try:
+        book_title = db.execute(
+            "SELECT title FROM books WHERE title LIKE :title", {"title": title})
+        books = book_title.fetchone()
+    except ValueError:
+        return render_template("error.html", message="we can't find books with that description.")
+
+    # Make sure book exists.
+    search_book = request.form.get(book_title)
+    if search_book is None:
+        return render_template("error.html", message="invalid title of the book.")
+    else:
+        return render_template("info.html", books=books)
+
+
+# @app.route("/info")
+# def info():
+#     headline = "Book Description."
+#     return render_template("info.html", headline=headline)
 
 
 @app.route("/book-page")

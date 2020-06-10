@@ -1,0 +1,30 @@
+{% extends "layout.html" %} {% block title %} My Info Book {% endblock %} {%
+block navbar %}
+<nav>
+  <a href="{{ url_for('index') }}">Home</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+</nav>
+{% endblock %} {% block body %}
+<div id="single-book-detail" class="row">
+  <div class="column mr1">
+    <h1>My Book</h1>
+    {% for book in books %}
+    <div style="width: 12rem;">
+      <div class="column">
+        <h4>{{book['title']}}</h4>
+        <h6>{{book['author']}}</h6>
+        <h6>{{book['year']}}</h6>
+        <h6>{{book['isbn']}}</h6>
+      </div>
+      <div>
+        <a href="{{ url_for('index') }}">Go to book page</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<div id="single-book-nav">
+  <a href="{{ url_for('index') }}">Go to book page</a>
+</div>
+<hr />
+{% endblock %}
