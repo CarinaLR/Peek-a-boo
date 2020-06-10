@@ -11,10 +11,29 @@ block navbar %}
     {% for book in books %}
     <div style="width: 12rem;">
       <div class="column">
-        <h4>{{book['title']}}</h4>
-        <h6>{{book['author']}}</h6>
-        <h6>{{book['year']}}</h6>
-        <h6>{{book['isbn']}}</h6>
+        <label>
+          Book:
+          <br />
+          <h2>{{book['title']}}</h2>
+        </label>
+        <br />
+        <label>
+          Author:
+          <br />
+          <h2>{{book['author']}}</h2>
+        </label>
+        <br />
+        <label>
+          Published year:
+          <br />
+          <h2>{{book['year']}}</h2>
+        </label>
+        <br />
+        <label>
+          ID Number:
+          <br />
+          <h2>{{book['isbn']}}</h2>
+        </label>
       </div>
     </div>
     {% endfor %}
