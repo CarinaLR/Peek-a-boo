@@ -133,8 +133,6 @@ def login():
         # Check info from user.
         if not request.form.get("username"):
             return render_template("index.html", message="please enter username")
-        elif not request.form.get("email"):
-            return render_template("index.html", message="please enter email")
         elif not request.form.get("password"):
             return render_template("index.html", message="plese enter password")
 
