@@ -26,16 +26,27 @@ navbar %}
     </div>
     <br />
     <div>
-      <h2 id="heasder">Goodreads Reviews</h2>
+      <h2 id="heasder">
+        Goodreads Reviews<link
+          href="https://www.goodreads.com/review/list/116334606"
+        ></link>
+      </h2>
       <div id="navbar" class="row">
         <nav
           style="width: 50rem; display: flex; justify-content: space-between;"
         >
-          <h3>Rating:</h3>
-          <h3>Average Rating:</h3>
+          <h4>
+            Rating:
+            <h3 style="color: black;">{{bookinfo[1]["work_ratings_count"]}}</h3>
+          </h4>
+          <h4>
+            Average Rating:
+            <h3 style="color: black;">{{bookinfo[1]["average_rating"]}}</h3>
+          </h4>
         </nav>
       </div>
-      <blockquote cite="http://www.worldwildlife.org/who/index.html">
+      <blockquote cite="https://www.goodreads.com/review/list/116334606">
+        {{bookinfo[1]["description"]}}
         For 50 years, WWF has been protecting the future of nature. The world's
         leading conservation organization, WWF works in 100 countries and is
         supported by 1.2 million members in the United States and close to 5
@@ -43,16 +54,16 @@ navbar %}
       </blockquote>
     </div>
     <br />
-    <form>
-      <label for="bookreview">Your Review:</label>
+    <form method="POST">
+      <label for="comment">Your Review:</label>
       <br />
       <textarea
-        id="bookreview"
-        name="bookreview"
+        id="comment"
+        name="review"
         rows="4"
         cols="50"
         style="width: 50rem;"
-      >
+       >
 Please let us know what do you think about this book.
 </textarea
       >

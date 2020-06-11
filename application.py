@@ -208,7 +208,7 @@ def bookpage(isbn):
 
         # Use isbn parameter to get book info.
         row = db.execute(
-            "SELEC id FROM books WHERE isbn = :isbn", {"isbn": isbn})
+            "SELECT isbn FROM books WHERE isbn = :isbn", {"isbn": isbn})
 
         # Storage book isbn.
         book_id = row.fetchone()
