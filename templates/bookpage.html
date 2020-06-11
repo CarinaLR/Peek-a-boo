@@ -7,12 +7,21 @@ navbar %}
 {% endblock %} {% block body %}
 <div id="single-book-detail" class="row">
   <div class="column mr1">
-    <h1 id="header">My Book</h1>
+    <h1 id="header">{{bookinfo[0]["title"]}}</h1>
     <div id="navbar" class="row">
       <nav style="width: 50rem; display: flex; justify-content: space-between;">
-        <h3>Author:</h3>
-        <h3>Year:</h3>
-        <h3>ID Number:</h3>
+        <h4>
+          Author:
+          <h3 style="color: black;">{{bookinfo[0]["author"]}}</h3>
+        </h4>
+        <h4>
+          Year:
+          <h3 style="color: black;">{{bookinfo[0]["year"]}}</h3>
+        </h4>
+        <h4>
+          ID Number:
+          <h3 style="color: black;">{{bookinfo[0]["isbn"]}}</h3>
+        </h4>
       </nav>
     </div>
     <br />
