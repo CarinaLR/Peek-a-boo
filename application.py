@@ -134,9 +134,9 @@ def login():
 
         # Check info from user.
         if not request.form.get("username"):
-            return render_template("index.html", message="please enter username")
+            return render_template("error.html", message="please enter username")
         elif not request.form.get("password"):
-            return render_template("index.html", message="plese enter password")
+            return render_template("error.html", message="plese enter password")
 
         # Access database.
         user = db.execute("SELECT * FROM users WHERE name = :username",
@@ -153,7 +153,7 @@ def login():
         session["user_name"] = result[1]
 
         # Redirect user to book-info page.
-        return redirect("/book-info")
+        return render_template("bookinfo.html", headline="Welcome, you are now logged in!")
 
     # Renders login page.
     else:

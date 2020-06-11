@@ -6,20 +6,14 @@ navbar %}
 </nav>
 {% endblock %} {% block body %}
 <div id="single-book-detail" class="row">
-  <div class="column mr1">
-    <h1>My Book</h1>
+  <div>
+    <h1>Book Name</h1>
     <form action="/book-info" method="GET">
-      <input
-        type="text"
-        placeholder="Search by title, author or ISBN#"
-        name="book"
-      />
+      <input type="text" placeholder="Search" name="book" />
       <button type="submit">Search</button>
     </form>
   </div>
 </div>
-<div id="single-book-nav">
-  <h2>Content4</h2>
-</div>
+<div id="single-book-nav"></div>
 <hr />
 {% endblock %}
