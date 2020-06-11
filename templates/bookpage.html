@@ -7,11 +7,43 @@ navbar %}
 {% endblock %} {% block body %}
 <div id="single-book-detail" class="row">
   <div class="column mr1">
-    <h1>My Book</h1>
+    <h1 id="header">My Book</h1>
+    <div id="navbar" class="row">
+      <nav style="width: 50rem; display: flex; justify-content: space-between;">
+        <h3>Author:</h3>
+        <h3>Year:</h3>
+        <h3>ID Number:</h3>
+      </nav>
+    </div>
+    <br />
+    <div>
+      <h2 id="heasder">Goodreads Reviews</h2>
+      <div id="navbar" class="row">
+        <nav
+          style="width: 50rem; display: flex; justify-content: space-between;"
+        >
+          <h3>Rating:</h3>
+          <h3>Average Rating:</h3>
+        </nav>
+      </div>
+      <blockquote cite="http://www.worldwildlife.org/who/index.html">
+        For 50 years, WWF has been protecting the future of nature. The world's
+        leading conservation organization, WWF works in 100 countries and is
+        supported by 1.2 million members in the United States and close to 5
+        million globally.
+      </blockquote>
+    </div>
+    <br />
     <form>
-      <label for="bookreview">Review of user:</label>
-
-      <textarea id="bookreview" name="bookreview" rows="4" cols="50">
+      <label for="bookreview">Your Review:</label>
+      <br />
+      <textarea
+        id="bookreview"
+        name="bookreview"
+        rows="4"
+        cols="50"
+        style="width: 50rem;"
+      >
 Please let us know what do you think about this book.
 </textarea
       >

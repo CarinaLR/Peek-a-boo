@@ -142,15 +142,15 @@ def login():
         user = db.execute("SELECT * FROM users WHERE name = :username",
                           {"username": username})
 
-        result = user.fetchone()
+        user_found = user.fetchone()
 
         # Check if user already exits.
-        if result == None:
+        if user_found == None:
             return render_template("register.html", message="invalid user, please check your information.")
 
         # Remember user.
-        session["user_id"] = result[0]
-        session["user_name"] = result[1]
+        session["user_id"] = user_found[0]
+        session["user_name"] = user_found[1]
 
         # Redirect user to book-info page.
         return render_template("bookinfo.html", headline="Welcome, you are now logged in!")
@@ -174,7 +174,7 @@ def bookinfo():
     # Set variables.
     headline = "Enter the information requested to help you with your search."
 
-    # Get informatio. request.args is used to return values of query string.
+    # Get information. request.args is used to return values of query string.
     title = request.args.get("book")
     try:
         book_title = db.execute(
