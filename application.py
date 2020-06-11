@@ -2,6 +2,7 @@ import os
 import json
 import re
 import requests
+import datetime
 
 
 from flask import Flask, session, render_template, redirect, request, flash
@@ -225,9 +226,12 @@ def bookpage(isbn):
         # Save rating.
         rating = int(rating)
 
+        # Get current time.
+        now = datetime.datetime.today()
+
         # Save all information in db.
-        db.execute("INSERT INTO reviews (user_id, book_isbn, comment, rating) VALUES (:user_id, :book_isbn, :comment, :rating)", {
-                   "user_id": actual_user, "book_isbn": book_id, "comment": review, "rating": rating})
+        db.execute("INSERT INTO reviews (user_id, book_isbn, comment, rating, date) VALUES (:user_id, :book_isbn, :comment, :rating, :date)", {
+                   "user_id": actual_user, "book_isbn": book_id, "comment": review, "rating": rating, "date": now})
         db.commit()
 
         return render_template("info.html", headline="Your review have been submmitted.")
@@ -259,7 +263,7 @@ def bookpage(isbn):
 
         # Chechk book reviews
         res = db.execute(
-            "SELECT users.name, comment, rating, to_char(date, 'DD Mon YY - HH24:MI:SS') as date FROM users INNER JOIN reviews ON users.id = reviews.user_id WHERE book_isbn = :book_isbn ORDER BY date", {"book_isbn": bookinfo})
+            "SELECT users.name, comment, rating, to_char(date, 'YY Mon DD - HH24:MI:SS') as time FROM users INNER JOIN reviews ON users.id = reviews.user_id WHERE book_isbn = :book_isbn ORDER BY date", {"book_isbn": bookinfo})
 
         reviews = res.fetchall()
 
