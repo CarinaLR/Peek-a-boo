@@ -53,6 +53,31 @@ p {
   margin: 0;
 }
 
+table {
+  border-collapse: collapse;
+  border: 1px solid black;
+  width: 100%;
+}
+
+table tr:hover {
+  background-color: #333;
+}
+
+td {
+  border-bottom: 1px solid gray;
+  padding: 10px;
+  text-align: center;
+}
+
+tr td {
+  border: 1px solid black;
+}
+
+th {
+  border: 1px solid black;
+  color: #00aaaa;
+}
+
 /* ids */
 #app {
   height: 100%;

@@ -177,6 +177,8 @@ def bookinfo():
 
     # Get information. request.args is used to return values of query string.
     title = request.args.get("book")
+    # # .title() method returns a string where the first character in every word is upper case.
+    # title = title.title()
     try:
         book_title = db.execute(
             "SELECT * FROM books WHERE isbn LIKE :title OR title LIKE :title OR author LIKE :title LIMIT 5", {"title": title})
