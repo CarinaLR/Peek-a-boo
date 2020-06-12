@@ -6,71 +6,46 @@ block navbar %}
 </nav>
 {% endblock %} {% block body %}
 <div>
-  <div class="column">
+  <div class="container">
     <h1 style="display: flex; justify-content: center;">My Book</h1>
-    <div id="navbar" class="row">
-      <nav style="width: 50rem; display: flex; justify-content: space-between;">
-        <h4>
-          BOOK:
-        </h4>
-        <h4>
-          AUTHOR
-        </h4>
-        <h4>
-          PUBLICATION YEAR
-        </h4>
-        <h4>
-          ID NUMBER
-        </h4>
-      </nav>
-    </div>
     {% for book in books %}
     <table
       style="border-collapse: collapse; border: 1px solid black; width: 100%;"
     >
       <tbody>
+        <tr id="navbar" style="width: 100%;">
+          <th>BOOK</th>
+          <th>AUTHOR</th>
+          <th>PUBLICATION YEAR</th>
+          <th>ID NUMBER</th>
+          <th>LINK TO PAGE</th>
+        </tr>
         <tr style="border: 1px solid black;">
           <td
             style="
-              border-bottom: 1px solid gray;
-              padding: 5px;
+              border: 1px solid black;
               text-align: center;
+              width: 10em;
+              padding: 10px;
             "
           >
             <h3>{{book['title']}}</h3>
           </td>
-          <td
-            style="
-              border-bottom: 1px solid gray;
-              padding: 5px;
-              text-align: center;
-            "
-          >
+          <td style="border: 1px solid black; text-align: center; width: 10em;">
             <h3>{{book['author']}}</h3>
           </td>
-          <td
-            sytle="border-bottom: 1px solid gray;
-          padding: 5px;
-          text-align: center;"
-          >
+          <td style="border: 1px solid black; text-align: center; width: 10em;">
             <h3>{{book['year']}}</h3>
           </td>
-          <td
-            style="
-              border-bottom: 1px solid gray;
-              padding: 5px;
-              text-align: center;
-            "
-          >
+          <td style="border: 1px solid black; text-align: center; width: 10em;">
             <h3>{{book['isbn']}}</h3>
+          </td>
+          <td style="border: 1px solid black; text-align: center; width: 10em;">
+            <a href="/book-page/{{book['isbn']}}">Book page</a>
           </td>
         </tr>
       </tbody>
     </table>
-    <div id="single-book-nav">
-      <a href="/book-page/{{book['isbn']}}">Go to book page</a>
-    </div>
-    <!-- id="single-book-detail" class="row" -->
     {% endfor %}
   </div>
 </div>
