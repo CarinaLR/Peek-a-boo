@@ -3,6 +3,8 @@ import json
 import re
 import requests
 import datetime
+import getpass
+import hashlib
 
 
 from flask import Flask, session, render_template, redirect, request, flash, jsonify
@@ -124,8 +126,9 @@ def signup():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     # Set variables.
-    headline = "Welcome, you are not logged in!"
+    headline = "Welcome, please login in your account!"
     username = request.form.get("username")
+    password = request.form.get("password")
 
     # Clear session.
     session.clear()
@@ -146,8 +149,8 @@ def login():
         user_found = user.fetchone()
 
         # Check if user already exits.
-        if user_found == None:
-            return render_template("register.html", message="invalid user, please check your information.")
+        if user_found == None or not (password == user_found.password):
+            return render_template("register.html", headline="User not found, please check your information or create an account.")
 
         # Remember user.
         session["user_id"] = user_found[0]
