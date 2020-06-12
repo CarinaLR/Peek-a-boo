@@ -161,13 +161,23 @@ def login():
         return render_template("login.html", headline=headline)
 
 
-@app.route("/logout")
+@app.route("/logout", methods=["GET"])
 def logout():
     headline = "Thank you for visiting us, come back soon!"
     # Clear seesion.
     session.clear()
-    # Renders logout page, redirecting user to login page by login button.
-    return render_template("logout.html", headline=headline)
+
+    if request.method == "GET":
+        # Get information from user.
+        response = request.form.get("res")
+
+        if response == "Y":
+            return render_template("login.html", headline=headline)
+        else:
+            # Renders logout page, redirecting user to login page by login button.
+            return render_template("logout.html", headline=headline)
+    else:
+        return render_template("logout.html", headline=headline)
 
 
 @app.route("/book-info", methods=["GET"])
