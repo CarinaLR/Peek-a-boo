@@ -5,7 +5,7 @@ import requests
 import datetime
 
 
-from flask import Flask, session, render_template, redirect, request, flash
+from flask import Flask, session, render_template, redirect, request, flash, jsonify
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -268,3 +268,36 @@ def bookpage(isbn):
         reviews = res.fetchall()
 
         return render_template("bookpage.html", headline=headline, bookinfo=info, reviews=reviews)
+
+
+@app.route("/api/<isbn>", methods=["GET"])
+# Pass in isbn parameter.
+def api_json(isbn):
+    # Read API isbn from db.
+    local_db = db.execute(
+        "SELECT isbn, title, author, year FROM books WHERE isbn = :isbn", {"isbn": isbn})
+    info = local_db.fetchone()
+
+    if local_db != None:
+        # Read API key from env variable
+        key = os.getenv("GOODREADS_KEY")
+        goodreads_reviews = requests.get(
+            "https://www.goodreads.com/book/review_counts.json", params={"key": key, "isbns": isbn})
+        # Parse info from Goodreads api.
+        work_ratings_count = goodreads_reviews.json(
+        )['books'][0]['work_ratings_count']
+        average_rating = goodreads_reviews.json()['books'][0]['average_rating']
+        # JSON response format.
+        data = {
+            "title": info.title,
+            "author": info.author,
+            "year": info.year,
+            "isbn": isbn,
+            "review_count": work_ratings_count,
+            "average_score": average_rating
+        }
+        # Render json response with described format.
+        response = json.dumps(data)
+        return response
+    else:
+        return render_template("error.html", message="Sorry, your request status is 404 not found.")
