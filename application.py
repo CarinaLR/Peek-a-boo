@@ -236,7 +236,7 @@ def bookpage(isbn):
                    "user_id": actual_user, "book_isbn": book_id, "comment": review, "rating": rating, "date": now})
         db.commit()
 
-        return render_template("info.html", headline="Your review have been submmitted.")
+        return render_template("logout.html", headline="Your review have been submmitted.")
     else:
         # Get info and render.
         row = db.execute(
