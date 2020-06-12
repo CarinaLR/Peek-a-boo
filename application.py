@@ -196,16 +196,14 @@ def bookinfo():
         book_title = db.execute(
             "SELECT * FROM books WHERE isbn LIKE :title OR title LIKE :title OR author LIKE :title LIMIT 5", {"title": title})
         books = book_title.fetchall()
-        return render_template("info.html", books=books)
+        # Make sure book exists.
+        if not title:
+            return render_template("error.html", message="invalid title of the book.")
+        else:
+            return render_template("info.html", books=books)
     except ValueError:
-        return render_template("error.html", message="we can't find books with that description.")
-
-    # Make sure book exists.
-    search_book = request.form.get(book_title)
-    if search_book is None:
-        return render_template("error.html", message="invalid title of the book.")
-    else:
-        return render_template("info.html", books=books)
+        if books is None:
+            return render_template("error.html", message="invalid title of the book.")
 
 
 @app.route("/book-page/<isbn>", methods=["GET", "POST"])
