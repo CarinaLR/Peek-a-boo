@@ -48,9 +48,10 @@ navbar %}
       <br>
       {% for review in reviews %}
       <div>
-        <div>
-          <blockquote>
-              <h3 style="color: black;">{{review['name']}}, said: </h3>
+        <div class="comment">
+          <h5>Peek a boo, user review:</h5>
+          <blockquote id="reviews">
+              <h3 style="color: black;">{{review['name']}}, </h3>
             {{review['comment']}}
               <h3 style="color: black;"> Rate: {{review['rating']}}</h3>
           </blockquote>
@@ -87,11 +88,6 @@ navbar %}
         </select>
       </div>
       <br />
-      <div style="display: flex; justify-content: center;">
-        <label>Search more books >>></label><br />
-        <input type="text" placeholder="Search" name="text" />
-        <button type="submit">Search</button>
-      </div>
     </form>
   </div>
 </div>

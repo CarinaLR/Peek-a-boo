@@ -150,7 +150,7 @@ def login():
 
         # Check if user already exits.
         if user_found == None or not (password == user_found.password):
-            return render_template("register.html", headline="User not found, please check your information or create an account.")
+            return render_template("register.html", headline="Invalid username or password, please try again or create an account.")
 
         # Remember user.
         session["user_id"] = user_found[0]
