@@ -296,7 +296,7 @@ def api_json(isbn):
             "review_count": work_ratings_count,
             "average_score": average_rating
         }
-        # Render json response with described format.
+        # Render json response with described format. json.dumps() -convert Python object into a JSON string.
         response = json.dumps(data)
         return response
     else:
