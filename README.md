@@ -17,6 +17,10 @@ export "GOODREADS_KEY"
 
 ## Enviroment
 
+- `$ . venv/bin/activate`
+- `export FLASK_APP=application.py`
+- `export "DATABASE_URL"`
+- `export "GOODREADS_KEY"`
 - `flask run`
 
 ![](/static/img/welcome.png)
