@@ -10,8 +10,11 @@ Built with `Python`/`SQLAlchemy`/
 ## Setup
 
 ```
-export "DATABASE_URL"
-export "GOODREADS_KEY"
+# application.py -the core of the project structure, connects the app with the database, and creates routes for each web page.
+# import.py -takes the list of books from the .csv file and populates the books table in the database. This file also creates the users, books, and reviews tables for the database.
+# models.py -gives a perspective of how each table of the database looks like and what data types are referring to.
+# templates folder -contains all HTML files.
+# static folder -contains CSS folder with the stylesheet and also img folder with all images using in this project.
 
 ```
 
